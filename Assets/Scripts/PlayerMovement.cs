@@ -13,25 +13,33 @@ public class PlayerController : MonoBehaviour
     private bool canJump = true;
     public Transform groundCheck;
     public LayerMask groundLayer;
-    private float groundCheckRadius = 0.2f;
+    private float groundCheckRadius = 0.3f;
 
-    private Animator anim;
-
+    public Animator anim;
+    [SerializeField] SpriteRenderer mySpriteRenderer;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         rb.gravityScale = gravityScale;
     }
 
     void Update()
     {
         float moveInput = Input.GetAxis("Horizontal");
+        if (moveInput > 0)
+            mySpriteRenderer.flipX = false;
+        else if (moveInput < 0)
+            mySpriteRenderer.flipX = true; 
+
+        if (isGrounded)
+            anim.SetBool("Grounded", true);
+        else
+            anim.SetBool("Grounded", false);
 
         // Check if the player is grounded, if yes, then it can jump, else, jump is disabled
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (!isGrounded)
+        if (!isGrounded && jumpForce >=0)
             rb.sharedMaterial = bouncyMat;
         else
             rb.sharedMaterial = normalMat;
