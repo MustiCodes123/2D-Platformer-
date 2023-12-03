@@ -1,54 +1,51 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 0f;
     public float gravityScale = 3f;
+    public bool isGrounded = true;
+    private bool isHolding = false;
 
     public PhysicsMaterial2D bouncyMat, normalMat;
 
     private Rigidbody2D rb;
-    public bool isGrounded;
-    private bool canJump = true;
     public Transform groundCheck;
     public LayerMask groundLayer;
+
     private float groundCheckRadius = 0.2f;
-
-    private Animator anim;
-
+        
+    public Animator anim;
+    [SerializeField] SpriteRenderer mySpriteRenderer;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         rb.gravityScale = gravityScale;
     }
 
     void Update()
-    {
+    { 
         float moveInput = Input.GetAxis("Horizontal");
-
-        // Check if the player is grounded, if yes, then it can jump, else, jump is disabled
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (!isGrounded)
-            rb.sharedMaterial = bouncyMat;
-        else
-            rb.sharedMaterial = normalMat;
+        RotateHoriz(moveInput);
+        SetSpriteVals();
+        SetMat();
+        JumpChar(moveInput);
+        MoveChar(moveInput);
+    }
 
-        // Horizontal movement
-        if (jumpForce == 0.0f && isGrounded)
-        {
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-        }
-
-        // Jumping
-        if (Input.GetButton("Jump") && isGrounded && canJump)
+    void JumpChar(float moveInput)
+    {
+        if (Input.GetButton("Jump") && isGrounded)
         {
             jumpForce += 0.09f;
+            isHolding = true;
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded && canJump)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(0.0f, rb.velocity.y);
         }
@@ -59,21 +56,54 @@ public class PlayerController : MonoBehaviour
             Invoke("ResetJump", 0.2f);
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("Jump") && isGrounded)
         {
-            if (isGrounded)
-            {
-                rb.velocity = new Vector2(moveInput * moveSpeed, jumpForce);
-                jumpForce = 0.0f;
-            }
-            canJump = true;
+            rb.velocity = new Vector2(moveInput * moveSpeed, jumpForce);
+            jumpForce = 0.0f; 
+            isHolding = false;
         }
-
     }
 
     void ResetJump()
     {
         jumpForce = 0.0f;
-        canJump = false;
+        isHolding = false;
     }
+    void MoveChar(float moveInput)
+    {
+        if (isGrounded && jumpForce == 0.0f) 
+        {
+            if (moveInput != 0.0f)
+            {
+                rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+            }
+        }
+    }
+
+    void RotateHoriz(float moveInput)
+    {
+        if (moveInput > 0)
+            mySpriteRenderer.flipX = false;
+        else if (moveInput < 0)
+            mySpriteRenderer.flipX = true;
+    }
+    void SetSpriteVals()
+    {
+        anim.SetBool("Grounded", isGrounded);
+        anim.SetBool("isWalking", Mathf.Abs(rb.velocity.x) > 1);
+        anim.SetBool("isFalling", rb.velocity.y <= -1);
+        anim.SetBool("isHolding", isHolding);
+    }
+    void SetMat()
+    {
+        if (rb.velocity.y <= -1)
+            rb.sharedMaterial = normalMat;
+        else if (rb.velocity.y > 1)
+            rb.sharedMaterial = bouncyMat;
+    }
+
 }
