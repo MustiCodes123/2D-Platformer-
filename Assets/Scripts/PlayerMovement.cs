@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") && isGrounded)
         {
-            jumpForce += 0.09f;
+            jumpForce += 0.07f;
             isHolding = true;
         }
 
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0.0f, rb.velocity.y);
         }
 
-        if (jumpForce >= 15f && isGrounded)
+        if (jumpForce >= 13.5f && isGrounded)
         {
             rb.velocity = new Vector2(moveInput * moveSpeed, jumpForce);
             Invoke("ResetJump", 0.2f);
