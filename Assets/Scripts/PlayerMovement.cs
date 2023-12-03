@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    private float groundCheckRadius = 0.3f;
-
+    private float groundCheckRadius = 0.2f;
+        
     public Animator anim;
     [SerializeField] SpriteRenderer mySpriteRenderer;
     void Start()
@@ -73,7 +73,14 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && jumpForce == 0.0f) 
         {
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+            if (moveInput != 0.0f)
+            {
+                rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+            }
         }
     }
 
@@ -98,4 +105,5 @@ public class PlayerController : MonoBehaviour
         else if (rb.velocity.y > 1)
             rb.sharedMaterial = bouncyMat;
     }
+
 }
