@@ -18,12 +18,17 @@ public class PlayerController : MonoBehaviour
     private float groundCheckRadius = 0.2f;
         
     public Animator anim;
+
+    
+
     [SerializeField] SpriteRenderer mySpriteRenderer;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
     }
+
+    
 
     void Update()
     { 
@@ -41,7 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") && isGrounded)
         {
-            jumpForce += 0.09f;
+            jumpForce += 0.175f;
             isHolding = true;
         }
 
@@ -50,7 +55,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0.0f, rb.velocity.y);
         }
 
-        if (jumpForce >= 15f && isGrounded)
+        if (jumpForce >= 14.5f && isGrounded)
         {
             rb.velocity = new Vector2(moveInput * moveSpeed, jumpForce);
             Invoke("ResetJump", 0.2f);
@@ -62,6 +67,8 @@ public class PlayerController : MonoBehaviour
             jumpForce = 0.0f; 
             isHolding = false;
         }
+
+        
     }
 
     void ResetJump()
