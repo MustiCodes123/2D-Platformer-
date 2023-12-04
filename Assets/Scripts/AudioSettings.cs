@@ -26,8 +26,4 @@ public class AudioSettings : MonoBehaviour
 
     }
 
-    public void OnBackButton()
-    {
-        SceneManager.LoadScene("SettingsMenu");
-    }
 }
