@@ -19,8 +19,14 @@ public class StartMenu : MonoBehaviour
 
     public void OnPlayButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("SampleScene");
     }
+
+    public void OnSettingsButton()
+    {
+        SceneManager.LoadScene("SettingsMenu");
+    }
+
     // Called when we click the "Quit" button.
     public void OnQuitButton()
     {
