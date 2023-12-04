@@ -6,7 +6,7 @@ public class Score : MonoBehaviour
     public Transform player; // Reference to your player GameObject
     public Text scoreText; // Reference to the UI Text element for displaying the score
 
-    private float highestHeight; // Keeps track of the highest height reached by the player
+    public float highestHeight; // Keeps track of the highest height reached by the player
     private float score; // Current score based on vertical height
 
     void Start()
@@ -32,5 +32,11 @@ public class Score : MonoBehaviour
                 scoreText.text = "Score: " + Mathf.Round(score).ToString();
             }
         }
+    }
+
+    public float ReturnScore()
+    {
+
+        return highestHeight;
     }
 }
