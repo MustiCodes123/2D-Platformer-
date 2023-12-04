@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         jumpSoundSource.clip = jumpSound;
         hitAudioSource = gameObject.AddComponent<AudioSource>();
         hitAudioSource.clip = hitSound;
+        Time.timeScale = 1f;
     }
 
 
