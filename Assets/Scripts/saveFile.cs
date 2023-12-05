@@ -4,8 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using Unity.VisualScripting;
+public interface savePersistence
+{
 
-public class saveFile : MonoBehaviour
+
+    void save(int playerNum);
+
+}
+public class saveFile : MonoBehaviour, savePersistence
 {
 
     public Text scoreText;
@@ -47,15 +53,17 @@ public class saveFile : MonoBehaviour
 
             // Write the updated values back to the file
             File.WriteAllLines(filePath, lines);
+
+
         }
         else
         {
             // If the file doesn't exist, create a new one
             string[] lines = {
-                tokens[1],
-                monkey.position.y.ToString(),
-                monkey.position.x.ToString()
-            };
+                    tokens[1],
+                    monkey.position.y.ToString(),
+                    monkey.position.x.ToString()
+                };
 
             // Write the lines to the file
             File.WriteAllLines(filePath, lines);
@@ -64,4 +72,6 @@ public class saveFile : MonoBehaviour
         Debug.Log("Player data saved to: " + filePath);
 
     }
+
+
 }

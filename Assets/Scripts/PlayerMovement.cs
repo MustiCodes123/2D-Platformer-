@@ -12,8 +12,11 @@ public class PlayerController : MonoBehaviour
 
     public PhysicsMaterial2D bouncyMat, normalMat;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public Transform groundCheck;
+
+    public Transform gameManager;
+
     public LayerMask groundLayer;
 
     private float groundCheckRadius = 0.2f;
@@ -74,6 +77,13 @@ public class PlayerController : MonoBehaviour
     {
         float moveInput = Input.GetAxis("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (isGrounded)
+        {
+
+            gameManager.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+            
+        }
 
         RotateHoriz(moveInput);
         SetSpriteVals();

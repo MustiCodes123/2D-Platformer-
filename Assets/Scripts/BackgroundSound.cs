@@ -1,43 +1,57 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BackgroundSound : MonoBehaviour
 {
-    public AudioClip backgroundAudioClip;
+    public AudioClip[] clips;
 
-    private AudioSource audioSource;
+    public Transform player;
 
+    public AudioSource audioSource;
+
+    bool playing = false;
+    int index = 0;
+    public int buffer = 120;
     private void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = backgroundAudioClip;
+        //audioSource = gameObject.AddComponent<AudioSource>();
+        int temp = (int)(player.position.y) / 12;
+        index = temp;
+    }
 
-        if (audioSource == null)
+    void Update()
+    {
+
+        if (!playing)
+            PlayBackgroundSound();
+        else
         {
-            Debug.LogError("No AudioSource found on this GameObject.");
-            return;
+            int temp = (int)(player.position.y) / 12;
+            if (index != temp)
+            {
+                buffer--;
+                if (buffer <= 0)
+                {
+                    index = temp;
+                    playing = false;
+                    audioSource.Stop();
+                    buffer = 120;
+                }
+
+            }
+            else
+            {
+                buffer = 120;
+            }
         }
 
-        if (backgroundAudioClip == null)
-        {
-            Debug.LogError("No audio clip assigned to the BackgroundSound script.");
-            return;
-        }
-
-        PlayBackgroundSound();
     }
 
     private void PlayBackgroundSound()
     {
-        // Check if an AudioListener is present in the scene
-        AudioListener audioListener = FindObjectOfType<AudioListener>();
-        if (audioListener == null)
-        {
-            Debug.LogWarning("No AudioListener found in the scene. Adding a default AudioListener.");
-            Camera.main.gameObject.AddComponent<AudioListener>();
-        }
-
-        // Play the audio in a loop
+        audioSource.clip = clips[index];
         audioSource.loop = true;
         audioSource.Play();
+        playing = true;
     }
 }
