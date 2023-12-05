@@ -19,7 +19,7 @@ public class StartMenu : MonoBehaviour
 
     public void OnPlayButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Game");
     }
 
     public void OnSettingsButton()
