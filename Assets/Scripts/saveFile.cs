@@ -6,28 +6,19 @@ using System.IO;
 using Unity.VisualScripting;
 public interface savePersistence
 {
-
-
     void save(int playerNum);
-
 }
 public class saveFile : MonoBehaviour, savePersistence
 {
-
     public Text scoreText;
-
     public Transform monkey;
 
     void Start()
     {
 
-
     }
-
-
     void Update()
     {
-
 
     }
 
@@ -35,7 +26,7 @@ public class saveFile : MonoBehaviour, savePersistence
     {
 
         string fileName = "Save" + playerNum + ".txt";
-        string folderPath = "C:/Users/HZK/Documents/GitHub/2D-Platformer-/Assets/SaveFiles";
+        string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
         string filePath = Path.Combine(folderPath, fileName);
 
         string[] tokens = scoreText.text.Split(' ');
@@ -53,8 +44,6 @@ public class saveFile : MonoBehaviour, savePersistence
 
             // Write the updated values back to the file
             File.WriteAllLines(filePath, lines);
-
-
         }
         else
         {

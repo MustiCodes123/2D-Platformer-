@@ -21,10 +21,6 @@ public class SettingsMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAud && !isVid)
-            OnAudioButton();
-        if (!isAud && isVid)
-            OnVideoButton();
         if (!isAud)
             audSettings.gameObject.SetActive(false);
         if (!isVid)
@@ -41,10 +37,6 @@ public class SettingsMenu : MonoBehaviour
         isVid = true;
         vidSettings.gameObject.SetActive(true);
         mainSettings.gameObject.SetActive(false);
-    }
-    public void OnBackButton()
-    {
-        SceneManager.LoadScene("Menu");
     }
     public void OnAudBackButton()
     {

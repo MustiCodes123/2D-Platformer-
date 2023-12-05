@@ -80,9 +80,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-
-            gameManager.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-            
+            gameManager.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);   
         }
 
         RotateHoriz(moveInput);
