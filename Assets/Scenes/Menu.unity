@@ -794,6 +794,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2975787949697474315, guid: 29660d26c9542f54d864811414eb3144, type: 3}
   m_PrefabInstance: {fileID: 3242113528499785634}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &454443018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7845690668471967385, guid: 29660d26c9542f54d864811414eb3144, type: 3}
+  m_PrefabInstance: {fileID: 3242113528499785634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &454443023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454443018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb91b7d7547d3f4ca9f1ec50665229d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonsText: []
+  scoreText: {fileID: 0}
+  monkey: {fileID: 0}
+  fileCount: 0
+  fileIndexes: []
 --- !u!1001 &539484213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2887,6 +2909,7 @@ GameObject:
   - component: {fileID: 1996497051}
   - component: {fileID: 1996497050}
   - component: {fileID: 1996497052}
+  - component: {fileID: 1996497053}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -3019,6 +3042,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1996497053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996497049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb91b7d7547d3f4ca9f1ec50665229d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonsText: []
+  scoreText: {fileID: 0}
+  monkey: {fileID: 0}
+  fileCount: 0
+  fileIndexes: []
 --- !u!1 &2040280742
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,7 +3241,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7845690668471967385, guid: 29660d26c9542f54d864811414eb3144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 454443023}
   m_SourcePrefab: {fileID: 100100000, guid: 29660d26c9542f54d864811414eb3144, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

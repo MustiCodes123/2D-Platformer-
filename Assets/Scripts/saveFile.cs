@@ -11,7 +11,7 @@ public interface savePersistence
 public class saveFile : MonoBehaviour, savePersistence
 {
     public Text scoreText;
-    public Transform monkey;
+    public Transform lastCoords;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class saveFile : MonoBehaviour, savePersistence
     public void save(int playerNum)
     {
 
-        string fileName = "Save" + playerNum + ".txt";
+        string fileName = "File" + playerNum + ".txt";
         string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
         string filePath = Path.Combine(folderPath, fileName);
 
@@ -39,8 +39,8 @@ public class saveFile : MonoBehaviour, savePersistence
 
             // Update the values
             lines[0] = tokens[1];
-            lines[1] = monkey.position.y.ToString();
-            lines[2] = monkey.position.x.ToString();
+            lines[1] = lastCoords.position.y.ToString();
+            lines[2] = lastCoords.position.x.ToString();
 
             // Write the updated values back to the file
             File.WriteAllLines(filePath, lines);
@@ -50,8 +50,8 @@ public class saveFile : MonoBehaviour, savePersistence
             // If the file doesn't exist, create a new one
             string[] lines = {
                     tokens[1],
-                    monkey.position.y.ToString(),
-                    monkey.position.x.ToString()
+                    lastCoords.position.y.ToString(),
+                    lastCoords.position.x.ToString()
                 };
 
             // Write the lines to the file
