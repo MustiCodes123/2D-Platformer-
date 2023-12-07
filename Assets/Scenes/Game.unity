@@ -2296,7 +2296,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1609481436}
         m_TargetAssemblyTypeName: saveFile, Assembly-CSharp
-        m_MethodName: save
+        m_MethodName: Save
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4695,7 +4695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1507873441}
-  monkey: {fileID: 1609481429}
+  lastCoords: {fileID: 0}
 --- !u!1 &1634866789
 GameObject:
   m_ObjectHideFlags: 0

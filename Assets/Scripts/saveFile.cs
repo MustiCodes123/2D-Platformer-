@@ -6,7 +6,7 @@ using System.IO;
 using Unity.VisualScripting;
 public interface savePersistence
 {
-    void save(int playerNum);
+    void Save(int playerNum);
 }
 public class saveFile : MonoBehaviour, savePersistence
 {
@@ -22,7 +22,7 @@ public class saveFile : MonoBehaviour, savePersistence
 
     }
 
-    public void save(int playerNum)
+    public void Save(int playerNum)
     {
 
         string fileName = "File" + playerNum + ".txt";
