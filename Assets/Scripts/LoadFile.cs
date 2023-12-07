@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 using UnityEngine.SceneManagement;
+using Unity.Mathematics;
 
 public class loadFile : MonoBehaviour
 {
@@ -53,13 +54,24 @@ public class loadFile : MonoBehaviour
     public void setFileNum(int fileNum)
     {
         string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
-        string fileName = "File" + fileNum;
+        string fileName;
+
+        if (fileNum > 10)
+        {
+            fileName = "File" + (fileNum - 10) + ".txt";
+        }
+        else
+            fileName = "File" + fileNum + ".txt";
+
         string filePath = Path.Combine(folderPath, fileName);
+
+
 
         PersistentParams.fileParameter = fileNum;
 
         if (File.Exists(filePath) && fileNum > 10)
         {
+
             SceneManager.LoadScene("Game");
         }
         else if (fileNum < 10)

@@ -4,19 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using Unity.VisualScripting;
-public interface savePersistence
-{
-    void Save();
-}
-public class saveFile : MonoBehaviour, savePersistence
+using System.IO.Enumeration;
+// public interface savePersistence
+// {
+//     void Save();
+//     void load();
+// }
+public class saveFile : MonoBehaviour //, savePersistence
 {
     public Text scoreText;
     public Text tTime;
     public Transform lastCoords;
+    public Transform player;
+    int playerNum = PersistentParams.fileParameter;
+    string fileName;
+    string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
+    string filePath;
 
     void Start()
     {
-        Save();
+        if (playerNum < 10)
+        {
+            Save();
+        }
+        else
+        {
+            playerNum -= 10;
+            load();
+        }
     }
     void Update()
     {
@@ -25,10 +40,9 @@ public class saveFile : MonoBehaviour, savePersistence
 
     public void Save()
     {
-        int playerNum = PersistentParams.fileParameter;
-        string fileName = "File" + playerNum + ".txt";
-        string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
-        string filePath = Path.Combine(folderPath, fileName);
+
+        fileName = "File" + playerNum + ".txt";
+        filePath = Path.Combine(folderPath, fileName);
 
         string[] tokens = scoreText.text.Split(' ');
         string[] tokens2 = tTime.text.Split(' ');
@@ -65,6 +79,20 @@ public class saveFile : MonoBehaviour, savePersistence
         }
 
         Debug.Log("Player data saved to: " + filePath);
+
+    }
+
+    public void load()
+    {
+        
+        fileName = "File" + playerNum + ".txt";
+        filePath = Path.Combine(folderPath, fileName);
+        string[] lines = File.ReadAllLines(filePath);
+
+        scoreText.text = "Score: " + lines[1];
+        Debug.Log(scoreText.text);
+        tTime.text = "Time: " + lines[2];
+        player.transform.position.Set(float.Parse(lines[4]), float.Parse(lines[3]), 0);
 
     }
 
