@@ -6030,10 +6030,12 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: bd5fad309c9e3e2418721a8f3e12b19c, type: 2}
   extraSkins:
   - {fileID: 22100000, guid: 792b7bb1fd84ddd4195272c1a68c1ef6, type: 2}
+  - {fileID: 22100000, guid: 6c23670482f47da4f8cb0c2b01a9b048, type: 2}
   img: {fileID: 857002408}
   allSkins:
   - {fileID: 21300000, guid: 413b7aa38a9e7964eadc4e1ce399d6a0, type: 3}
   - {fileID: 21300000, guid: 6bf688ea05d929a43ac607d3a3352323, type: 3}
+  - {fileID: 21300000, guid: fdefd059a1239c84f85c169859af82b5, type: 3}
 --- !u!82 &2025396298
 AudioSource:
   m_ObjectHideFlags: 0
