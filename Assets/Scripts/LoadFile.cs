@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-using System;
 using UnityEngine.SceneManagement;
-using Unity.Mathematics;
 
 public class loadFile : MonoBehaviour
 {
