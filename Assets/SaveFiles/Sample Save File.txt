@@ -1,0 +1,5 @@
+Player name
+time 
+score
+y
+x
