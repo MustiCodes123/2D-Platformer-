@@ -9,6 +9,7 @@ public class PersistentParams : MonoBehaviour
     public static int fileParameter;
     public static bool isLoading = false;
 
+    public static string playerName;
     public static string mins;
     public static string secs;
     private void Awake()

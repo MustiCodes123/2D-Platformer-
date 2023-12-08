@@ -53,7 +53,7 @@ public class saveFile : MonoBehaviour //, savePersistence
             string[] lines = File.ReadAllLines(filePath);
 
             // Update the values
-            lines[0] = "Player" + playerNum;
+            lines[0] = PersistentParams.playerName;
             lines[1] = scoreText.text;
             lines[2] = tTime.text;
             lines[3] = lastCoords.position.y.ToString();
@@ -66,7 +66,7 @@ public class saveFile : MonoBehaviour //, savePersistence
         {
             // If the file doesn't exist, create a new one
             string[] lines = {
-                    "Player" + playerNum,
+                    PersistentParams.playerName,
                     scoreText.text,
                     tTime.text,
                     lastCoords.position.y.ToString(),

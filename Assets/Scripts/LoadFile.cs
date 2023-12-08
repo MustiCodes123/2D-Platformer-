@@ -7,12 +7,15 @@ using System.IO;
 using System;
 using UnityEngine.SceneManagement;
 using Unity.Mathematics;
+using System.Diagnostics;
 
 public class loadFile : MonoBehaviour
 {
     //public GameObject button;
 
     public Text[] buttonsText;
+
+    public Text inputField;
 
     public int fileCount;
 
@@ -67,16 +70,19 @@ public class loadFile : MonoBehaviour
 
 
 
-        PersistentParams.fileParameter = fileNum;
+
 
         if (File.Exists(filePath) && fileNum > 10)
         {
+            PersistentParams.fileParameter = fileNum;
             PersistentParams.isLoading = true;
             SceneManager.LoadScene("Game");
         }
         else if (fileNum < 10)
         {
             PersistentParams.isLoading = false;
+            PersistentParams.playerName = inputField.text;
+            UnityEngine.Debug.Log(PersistentParams.playerName);
             SceneManager.LoadScene("Game");
         }
     }
