@@ -6301,7 +6301,7 @@ MonoBehaviour:
   scoreText: {fileID: 1507873441}
   tTime: {fileID: 1536781393}
   lastCoords: {fileID: 1609481429}
-  player: {fileID: 0}
+  player: {fileID: 2025396292}
 --- !u!1001 &1631346603
 PrefabInstance:
   m_ObjectHideFlags: 0
