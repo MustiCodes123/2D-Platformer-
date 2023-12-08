@@ -6763,12 +6763,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 84ef455e59314754f86965d010e35388, type: 3}
-  - {fileID: 8300000, guid: 84ef455e59314754f86965d010e35388, type: 3}
-  - {fileID: 8300000, guid: bf52850b73d606248a457fce67f4732c, type: 3}
   - {fileID: 8300000, guid: bf52850b73d606248a457fce67f4732c, type: 3}
   - {fileID: 8300000, guid: 50ad50cd1e6e73d4f8333cf641ddef05, type: 3}
-  - {fileID: 8300000, guid: 50ad50cd1e6e73d4f8333cf641ddef05, type: 3}
-  - {fileID: 8300000, guid: 50ad50cd1e6e73d4f8333cf641ddef05, type: 3}
+  - {fileID: 8300000, guid: cb518ec027a640f4295f443d6c14167a, type: 3}
+  - {fileID: 8300000, guid: 72babd6f5f2a074428e281b0d860b45c, type: 3}
+  - {fileID: 8300000, guid: 187019eaf07d903459b3d827e32890eb, type: 3}
+  - {fileID: 8300000, guid: 03a50219c38739947b96d289619116be, type: 3}
   player: {fileID: 2025396292}
   audioSource: {fileID: 1860085388}
   buffer: 120
