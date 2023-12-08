@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource hitAudioSource;
 
+    public GameObject WinScreen;
+
     private void playHitSound()
     {
         // Check if an AudioListener is present in the scene
@@ -57,12 +59,17 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject && !isGrounded)
             playHitSound();
-
+        if (collision.gameObject.CompareTag("FinalStar"))
+        {
+            WinScreen.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
 
     void Start()
     {
+        WinScreen.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
         jumpSoundSource = gameObject.GetComponent<AudioSource>();
