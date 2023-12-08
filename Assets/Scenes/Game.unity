@@ -2295,7 +2295,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1609481436}
         m_TargetAssemblyTypeName: saveFile, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 1

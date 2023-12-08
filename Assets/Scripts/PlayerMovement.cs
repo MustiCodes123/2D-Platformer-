@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Audio;
 
+[DefaultExecutionOrder(100)]
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            gameManager.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);   
+            gameManager.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         }
 
         RotateHoriz(moveInput);
