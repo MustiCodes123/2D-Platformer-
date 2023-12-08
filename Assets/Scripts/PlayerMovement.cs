@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Audio;
+using System.IO;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip hitSound;
 
     public AudioSource hitAudioSource;
+    string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
 
     private void playHitSound()
     {
@@ -69,6 +71,16 @@ public class PlayerController : MonoBehaviour
         hitAudioSource = gameObject.AddComponent<AudioSource>();
         hitAudioSource.clip = hitSound;
         Time.timeScale = 1f;
+
+        // Set initial position
+        int fileNum = PersistentParams.fileParameter;
+        if (fileNum > 10)
+            fileNum -= 10;
+        string fileName = "File" + fileNum + ".txt";
+        string filePath = Path.Combine(folderPath, fileName);
+        string[] lines = File.ReadAllLines(filePath);
+
+        gameObject.transform.position = new Vector3(float.Parse(lines[3]), float.Parse(lines[4]), 0);
     }
 
 
@@ -80,7 +92,8 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            gameManager.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);   
+            Debug.Log("GAME MANAGER POSITION CHANGED");
+            gameManager.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);        
         }
 
         RotateHoriz(moveInput);

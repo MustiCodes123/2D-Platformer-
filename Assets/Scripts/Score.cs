@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System;
 
 public class Score : MonoBehaviour
 {
@@ -8,11 +10,19 @@ public class Score : MonoBehaviour
 
     public float highestHeight; // Keeps track of the highest height reached by the player
     private float score; // Current score based on vertical height
+    string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
 
     void Start()
     {
         highestHeight = player.position.y; // Initialize the highest height as the initial player position
-        score = 0f; // Initialize the score
+        int fileNum = PersistentParams.fileParameter;
+        if (fileNum > 10)
+            fileNum -= 10;
+        string fileName = "File" + fileNum + ".txt";
+        string filePath = Path.Combine(folderPath, fileName);
+        string[] lines = File.ReadAllLines(filePath);
+
+        score = float.Parse(lines[1]); // Initialize the score
     }
 
     void Update()

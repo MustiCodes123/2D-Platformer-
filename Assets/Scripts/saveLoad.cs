@@ -26,7 +26,7 @@ public class saveFile : MonoBehaviour //, savePersistence
         else
         {
             playerNum -= 10;
-            load();
+         //   load();
         }
     }
     void Update()
@@ -36,7 +36,7 @@ public class saveFile : MonoBehaviour //, savePersistence
 
     public void Save()
     {
-
+        Debug.Log("SAVE FUNCTION CALLEDDDDDD");
         fileName = "File" + playerNum + ".txt";
         filePath = Path.Combine(folderPath, fileName);
 
@@ -53,8 +53,8 @@ public class saveFile : MonoBehaviour //, savePersistence
             lines[0] = "Player" + playerNum;
             lines[1] = tokens[1];
             lines[2] = tokens2[1];
-            lines[3] = lastCoords.position.y.ToString();
-            lines[4] = lastCoords.position.x.ToString();
+            lines[3] = lastCoords.position.x.ToString();
+            lines[4] = lastCoords.position.y.ToString();
 
             // Write the updated values back to the file
             File.WriteAllLines(filePath, lines);
@@ -66,8 +66,8 @@ public class saveFile : MonoBehaviour //, savePersistence
                     "Player" + playerNum,
                     tokens[1],
                     tokens2[1],
-                    lastCoords.position.y.ToString(),
-                    lastCoords.position.x.ToString()
+                    lastCoords.position.x.ToString(),
+                    lastCoords.position.y.ToString()
                 };
 
             // Write the lines to the file
