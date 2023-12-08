@@ -32,7 +32,7 @@ public class loadFile : MonoBehaviour
             //Debug.Log(fileName);
             if (File.Exists(filePath))
             {
-               // Debug.Log("File Found");
+                // Debug.Log("File Found");
                 string[] lines = File.ReadAllLines(filePath);
                 buttonsText[i * 3].text = lines[0];
                 buttonsText[i * 3 + 1].text = lines[1];
@@ -76,7 +76,7 @@ public class loadFile : MonoBehaviour
         }
         else if (fileNum < 10)
         {
-
+            PersistentParams.isLoading = false;
             SceneManager.LoadScene("Game");
         }
     }
