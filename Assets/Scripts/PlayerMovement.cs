@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") && isGrounded)
         {
-            jumpForce += 0.2f;
+            jumpForce += 0.3f;
             isHolding = true;
         }
 
