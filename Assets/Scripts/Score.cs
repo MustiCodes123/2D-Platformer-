@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Score : MonoBehaviour
 {
     public Transform player; // Reference to your player GameObject
@@ -11,8 +12,18 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        highestHeight = player.position.y; // Initialize the highest height as the initial player position
-        score = 0f; // Initialize the score
+        // Initialize the highest height as the initial player position
+        if (!PersistentParams.isLoading)
+        {
+            highestHeight = player.position.y;
+            score = 0f; // Initialize the score
+        }
+        else
+        {
+
+            score = float.Parse(scoreText.text.Split()[1]);
+            highestHeight = score;
+        }
     }
 
     void Update()

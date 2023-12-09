@@ -6,6 +6,8 @@ public class StartMenu : MonoBehaviour
     public Transform mainMenu;
     public Transform settingsMenu;
     public Transform newGameMenu;
+
+    public Transform inputMenu;
     public Transform loadGameMenu;
 
     // Start is called before the first frame update
@@ -15,6 +17,7 @@ public class StartMenu : MonoBehaviour
         settingsMenu.gameObject.SetActive(false);
         newGameMenu.gameObject.SetActive(false);
         loadGameMenu.gameObject.SetActive(false);
+        inputMenu.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,7 +33,7 @@ public class StartMenu : MonoBehaviour
 
     public void OnSettingsButton()
     {
-        settingsMenu.gameObject.SetActive(true);  
+        settingsMenu.gameObject.SetActive(true);
         mainMenu.gameObject.SetActive(false);
     }
     public void OnNewGameButton()
@@ -52,6 +55,15 @@ public class StartMenu : MonoBehaviour
     {
         mainMenu.gameObject.SetActive(true);
         newGameMenu.gameObject.SetActive(false);
+    }
+
+    public void onNewSaveGameButton(int fileParam)
+    {
+
+        PersistentParams.fileParameter = fileParam;
+        newGameMenu.gameObject.SetActive(false);
+        inputMenu.gameObject.SetActive(true);
+
     }
     public void OnLoadGameBackButton()
     {

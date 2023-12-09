@@ -6,6 +6,7 @@ using System.IO;
 //     void Save();
 //     void load();
 // }
+
 public class saveFile : MonoBehaviour //, savePersistence
 {
     public Text scoreText;
@@ -40,8 +41,6 @@ public class saveFile : MonoBehaviour //, savePersistence
         fileName = "File" + playerNum + ".txt";
         filePath = Path.Combine(folderPath, fileName);
 
-        string[] tokens = scoreText.text.Split(' ');
-        string[] tokens2 = tTime.text.Split(' ');
 
         // Check if the file exists
         if (File.Exists(filePath))
@@ -50,9 +49,9 @@ public class saveFile : MonoBehaviour //, savePersistence
             string[] lines = File.ReadAllLines(filePath);
 
             // Update the values
-            lines[0] = "Player" + playerNum;
-            lines[1] = tokens[1];
-            lines[2] = tokens2[1];
+            lines[0] = PersistentParams.playerName;
+            lines[1] = scoreText.text;
+            lines[2] = tTime.text;
             lines[3] = lastCoords.position.y.ToString();
             lines[4] = lastCoords.position.x.ToString();
 
@@ -63,9 +62,9 @@ public class saveFile : MonoBehaviour //, savePersistence
         {
             // If the file doesn't exist, create a new one
             string[] lines = {
-                    "Player" + playerNum,
-                    tokens[1],
-                    tokens2[1],
+                    PersistentParams.playerName,
+                    scoreText.text,
+                    tTime.text,
                     lastCoords.position.y.ToString(),
                     lastCoords.position.x.ToString()
                 };
@@ -80,15 +79,20 @@ public class saveFile : MonoBehaviour //, savePersistence
 
     public void load()
     {
-        
+
         fileName = "File" + playerNum + ".txt";
         filePath = Path.Combine(folderPath, fileName);
         string[] lines = File.ReadAllLines(filePath);
 
-        scoreText.text = "Score: " + lines[1];
-        Debug.Log(scoreText.text);
-        tTime.text = "Time: " + lines[2];
-        player.transform.position.Set(float.Parse(lines[4]), float.Parse(lines[3]), 0);
+        scoreText.text = lines[1];
+        //Debug.Log(scoreText.text);
+        tTime.text = lines[2];
+        string[] tokens = tTime.text.Split(" ");
+        string time = tokens[1];
+        PersistentParams.mins = time.Split(":")[0];
+        PersistentParams.secs = time.Split(":")[1];
+
+        player.transform.position = new Vector3(float.Parse(lines[4]), float.Parse(lines[3]), 0);
 
     }
 

@@ -1,13 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
 using UnityEngine.SceneManagement;
+using Unity.Mathematics;
+using System.Diagnostics;
 
 public class loadFile : MonoBehaviour
 {
     //public GameObject button;
 
     public Text[] buttonsText;
+
+    public Text inputField;
 
     public int fileCount;
 
@@ -27,11 +35,11 @@ public class loadFile : MonoBehaviour
             //Debug.Log(fileName);
             if (File.Exists(filePath))
             {
-                Debug.Log("File Found");
+                // Debug.Log("File Found");
                 string[] lines = File.ReadAllLines(filePath);
                 buttonsText[i * 3].text = lines[0];
-                buttonsText[i * 3 + 1].text = "Score: " + lines[1];
-                buttonsText[i * 3 + 2].text = "Time: " + lines[2];
+                buttonsText[i * 3 + 1].text = lines[1];
+                buttonsText[i * 3 + 2].text = lines[2];
 
             }
             else
@@ -62,16 +70,19 @@ public class loadFile : MonoBehaviour
 
 
 
-        PersistentParams.fileParameter = fileNum;
+
 
         if (File.Exists(filePath) && fileNum > 10)
         {
-
+            PersistentParams.fileParameter = fileNum;
+            PersistentParams.isLoading = true;
             SceneManager.LoadScene("Game");
         }
         else if (fileNum < 10)
         {
-
+            PersistentParams.isLoading = false;
+            PersistentParams.playerName = inputField.text;
+            UnityEngine.Debug.Log(PersistentParams.playerName);
             SceneManager.LoadScene("Game");
         }
     }

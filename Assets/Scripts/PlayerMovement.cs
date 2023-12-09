@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Audio;
 
+[DefaultExecutionOrder(100)]
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource hitAudioSource;
 
+    public GameObject WinScreen;
+
     private void playHitSound()
     {
         // Check if an AudioListener is present in the scene
@@ -56,12 +59,17 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject && !isGrounded)
             playHitSound();
-
+        if (collision.gameObject.CompareTag("FinalStar"))
+        {
+            WinScreen.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
 
     void Start()
     {
+        WinScreen.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
         jumpSoundSource = gameObject.GetComponent<AudioSource>();
@@ -80,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            gameManager.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);   
+            gameManager.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         }
 
         RotateHoriz(moveInput);

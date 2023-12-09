@@ -1,5 +1,8 @@
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class TimeCalculator : MonoBehaviour
 {
@@ -9,7 +12,20 @@ public class TimeCalculator : MonoBehaviour
 
     void Start()
     {
-        currentTime = 0f; // Initialize the time
+
+
+        // UnityEngine.Debug.Log(PersistentParams.mins);
+        // UnityEngine.Debug.Log(PersistentParams.secs);
+
+        if (!PersistentParams.isLoading)
+        {
+            currentTime = 1f;
+        }
+        else
+        {
+            currentTime = float.Parse(PersistentParams.mins) * 60 + float.Parse(PersistentParams.secs);
+        }
+
         UpdateTimeDisplay();
         InvokeRepeating(nameof(UpdateTime), 1f, 1f); // Invoke UpdateTime every 1 second
     }
