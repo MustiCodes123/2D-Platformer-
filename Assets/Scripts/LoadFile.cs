@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-using System;
 using UnityEngine.SceneManagement;
-using Unity.Mathematics;
-using System.Diagnostics;
+
 
 public class loadFile : MonoBehaviour
 {
@@ -23,7 +18,8 @@ public class loadFile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
+        UnityEngine.Debug.Log(Application.persistentDataPath);
+        string folderPath = Application.persistentDataPath;
         string fileName;
         string filePath;
 
@@ -56,7 +52,7 @@ public class loadFile : MonoBehaviour
 
     public void setFileNum(int fileNum)
     {
-        string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
+        string folderPath = Application.persistentDataPath;
         string fileName;
 
         if (fileNum > 10)

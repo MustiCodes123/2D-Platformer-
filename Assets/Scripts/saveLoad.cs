@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-using Unity.VisualScripting;
-using System.IO.Enumeration;
+
 // public interface savePersistence
 // {
 //     void Save();
@@ -19,11 +16,12 @@ public class saveFile : MonoBehaviour //, savePersistence
     public Transform player;
     int playerNum = PersistentParams.fileParameter;
     string fileName;
-    string folderPath = Directory.GetCurrentDirectory() + "/Assets/SaveFiles";
+    string folderPath;
     string filePath;
 
     void Start()
     {
+        folderPath = Application.persistentDataPath;
         if (playerNum < 10)
         {
             Save();

@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.Audio;
+
 
 [DefaultExecutionOrder(100)]
 public class PlayerController : MonoBehaviour
