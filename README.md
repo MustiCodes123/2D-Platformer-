@@ -1,4 +1,2 @@
 # 2D-Platformer-
-yes fuck me
-
-AHHHHHH O GAME TIME HOGAYA HAYYYY
+Final Project for Software Design and Analysis class Fall 2023.
